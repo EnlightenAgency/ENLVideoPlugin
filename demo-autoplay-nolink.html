@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ENL Video Plugin | Auto-play Demo: No Link</title>
+    <link rel="stylesheet" href="for-demo-only/styles.css"/>
+    <link rel="stylesheet" href="colorbox/colorbox.css" />
+</head>
+<body class="demo">
+
+	<h1>ENL Video Plugin | Auto-play Demo: No Link</h1>
+
+    <div class="nav">
+        <ul class="demoNav">
+            <li><a href="demo.html">Basic Demos</a></li>
+            <li class="active"><a href="demo-autoplay-nolink.html?videoURL=video/FE_768x432_h264_750Kbps.mp4&videoWidth=768&videoHeight=432&videoDuration=114">Auto-play Demo: No Link</a></li>
+            <li><a href="demo-autoplay-linkonpage.html?videoURL=video/FE_Serum_768x432_h264_750Kbps.mp4">Auto-play Demo: Link on Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Video autoplays on page load from a LightBox -->
+	<div class="section">
+		<h2><span>7</span> Video will autoplay in a LightBox when the page is loaded</h2>
+        <p>The video automatically plays in a LightBox when the page is loaded. There is no HTML or link for the video in the page DOM. This is done by including the <em>ENLvideo.autoplay.js</em> file after the plugin and adding a query string to the URL with the video location, width, height, and duration. When doing this, you do not need to include a link to the video on the page itself (though you can if desired, as shown in the <a href="demo-autoplay-linkonpage.html?videoURL=video/FE_Serum_768x432_h264_750Kbps.mp4">Auto-play Demo: Link on Page</a> example).</p>
+
+        <p>You will need an additional file called <strong>ENLvideo.autoplay.js</strong> that should be included after the ENLvideo.js plugin file. You also must include the ColorBox files. You do NOT need to include a call to the plugin in this case. The autoplay JS constructs the proper elements and makes the call for you.</p>
+
+        <p><em>Note:</em> If the video did not play, <a href="demo-autoplay-nolink.html?videoURL=video/FE_768x432_h264_750Kbps.mp4&videoWidth=768&videoHeight=432&videoDuration=114">click here to reload the page with the necessary autoplay parameters</a>.</p>
+	
+		<div class="codeContainer">
+            
+            <h3>URL with Query String</h3>
+            <code>
+                http://[path]?videoURL=video/FE_768x432_h264_750Kbps.mp4&videoWidth=768&videoHeight=432&videoDuration=114
+            </code>
+
+            <h3>Include jQuery files</h3>
+			<code>
+				&lt;script src="js/jquery.ENLvideo.min.js"&gt;&lt;/script&gt;<br />
+                <strong>&lt;script src="js/jquery.ENLvideo.autoplay.min.js"&gt;&lt;/script&gt;</strong>
+			</code>
+		</div>
+	</div>
+
+<!-- FOOTER -->
+
+	<div class="footer">
+		<p><a href="index.html">ENLvideo.js Documentation</a></p>
+	</div>
+
+	<!-- REQUIRED jQuery library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	
+	<!-- REQUIRED swfobject -->
+	<script src="js/swfobject.min.js"></script>
+
+	<!-- OPTIONAL Colorbox plugin -->
+	<script src="js/jquery.colorbox-min.js"></script>
+
+	<!-- OPTIONAL webtrends tracking -->
+	<script src="js/webtrends.min.js" type="text/javascript"></script>
+
+	<!-- REQUIRED ENLvideo plugin -->
+	<script src="for-demo-only/ENLvideo.demo.js"></script>
+
+    <!-- AutoPlay -->
+    <script src="for-demo-only/ENLvideo.autoplay.demo.js"></script>
+
+	<!-- REQUIRED jQuery to call the plugin: this should be in a separate js file for the project, it is in the footer for example purposes only -->
+	<script type="text/javascript">
+
+	    // REQUIRED analytics tracking: these functions should already exist in the project
+	    function riaTrack(trackingParam) {
+	        goToPage(trackingParam);
+	    }
+	    function goToPage(pg) {
+	        dcsMultiTrack('DCS.dcsuri', pg, 'DCS.dcsqry', '', 'WT.ti', pg);
+	        firstTracker._trackPageview(pg);
+	    }
+
+	</script>
+
+<!-- REQUIRED start SmartSource Data Collector -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var _tag = new WebTrends();
+        _tag.dcsGetId();
+        //]]>>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        // Add custom parameters here.
+        //_tag.DCSext.param_name=param_value;
+        _tag.dcsCollect();
+        //]]>>
+    </script>
+    <noscript>
+        <div></div>
+    </noscript>
+
+<!--REQUIRED Google Analytics -->
+	<script type="text/javascript">
+	    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+	<script type="text/javascript">
+	    try {
+	        var firstTracker = _gat._getTracker("UA-385129-999"); // Global Tag
+	        firstTracker._setDomainName("none");
+	        firstTracker._trackPageview();
+	    } catch (err) { }
+
+	</script>
+
+</body>
+</html>

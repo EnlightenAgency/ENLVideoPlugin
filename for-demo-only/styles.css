@@ -1,0 +1,406 @@
+/*--------------------
+      CSS RESET
+--------------------*/
+ 
+/*
+HTML5 Reset
+Version 1.1
+Author: Kim Maida | http://kim-maida.com
+Updated: 1-4-2012
+*/
+ 
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins,
+kbd, q, s, samp, small, strike, strong, tt, var, dl, dt,
+dd, ol, ul, li, fieldset, form, input, textarea, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    margin: 0; padding: 0;
+    border: 0; outline: 0;
+    font-weight: inherit; font-style: inherit; font-family: inherit;
+    line-height: 1;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+ 
+img, input, select { vertical-align: middle; }
+ 
+ol, ul { list-style: none; }
+ 
+a,
+label,
+input[type=button],
+input[type=submit],
+button { cursor: pointer; }
+ 
+input, select, textarea { font-family: inherit; }
+textarea { overflow: auto; } /* prevents scrollbar from showing up when unneeded in IE */
+ 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+ 
+caption, th, td { text-align: left; font-weight: normal; }
+ 
+i, em { color: #000; font-style: italic; }
+b, strong { font-weight: bold; }
+s { text-decoration: line-through; }
+ 
+q:lang(en) { quotes: '&#8220;' '&#8221;' '&#8216;' '&#8217;'; }
+ 
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section { display: block; }
+ 
+del { text-decoration: line-through; }
+ 
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+/*-------------------------------------------------------------------------------------- BASE STYLES --*/
+
+html { background: #eee; }
+
+body {
+    font: normal 16px/1.4 'Helvetica Neue', 'Segoe UI', Segoe, Helvetica, Arial, sans-serif;
+    margin: 8px auto;
+    text-align: center;
+    width: 960px;
+}
+
+img { display: block; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+p {
+    line-height: 1.4;
+    padding: 8px 0;
+}
+
+h1 {
+    color: #e78800;
+    text-shadow: 0 1px 0 #fff;
+}
+
+a {
+    color: #000;
+    line-height: 1.2;
+    text-decoration: underline;
+}
+
+    a:hover {
+        color: #E78800;
+    }
+
+/*-- Nav --*/
+
+nav,
+.nav {
+    padding: 8px 0;
+}
+
+nav ul,
+.nav {
+    display: inline-block;
+    overflow: hidden;
+}
+
+nav li,
+.nav li {
+    float: left;
+    padding: 10px 6px;
+}
+
+    nav li:first-child { padding: 10px 6px 10px 0; }
+
+    .nav li.active a { 
+        background: #444;
+        border-color: #000; 
+    }
+
+    .nav li.active a:hover { 
+        color: #fff; 
+        text-shadow: none;
+    }
+
+nav a,
+.nav a {
+    background: #E78800;
+    background: -moz-linear-gradient(bottom, #e78800 0%, #ffc777 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0%,#e78800), color-stop(100%,#ffc777)); /* Chrome,Safari4+ */
+    border: 1px solid #777;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    color: #fff;
+    display: block;
+    font-weight: bold;
+    padding: 7px 8px 8px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5)
+}
+
+    nav a:hover,
+    .nav a:hover {
+        background: #ffc777;
+        border: 1px solid #444;
+        color: #444;
+        text-shadow: 0 1px 0 rgba(255,255,255,.7)
+    }
+
+    nav a:active,
+    .nav a:active {
+        background: #e78800;
+    }
+    
+/*-- Code --*/
+
+code {
+    background: #f7e2c5;
+    color: #000;
+    display: inline-block;
+    font: normal 14px/1.4 Consolas, 'Lucida Console', 'Courier New', Courier, Monospace;
+    margin: 8px 0;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+	body.demo code { display: block; }
+
+.codeIndent1 {
+	display: block;
+	padding-left: 30px;
+}
+
+.codeIndent2 {
+	display: block;
+	padding-left: 60px;
+}
+
+.sep {
+	color: Red;
+}
+
+.opt {
+	color: Blue;
+}
+
+.cmt {
+	color: Green;
+}
+
+/*-- Footer --*/
+
+.footer,
+footer {
+    background: #ccc;
+    font-size: 12px;
+    font-style: italic;
+    padding: 0 8px;
+    text-align: right;
+}
+
+footer a,
+.footer a { color: #000; }
+    
+    footer a:hover,
+    .footer a:hover { color: #444; }
+
+/*---------------------------------------------------------------------------- DEMO (body.demo), doctype XHTML 1.0 Transitional --*/
+
+body.demo h4 { 
+    font-style: italic; 
+    font-weight: normal;
+}
+
+.videoLink {
+    display: inline-block;
+    text-align: center;
+}
+
+img.posterImg {
+    padding: 0 0 8px;
+}
+
+.section {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #444;
+    display: block;
+    margin: 0 auto 20px;
+    padding: 22px 30px 30px;
+}
+
+.section h2 {
+    font-size: 18px;
+    padding: 0;
+    text-align: left;
+}
+
+	.section h2 span {
+		background: #E78800;
+		border-radius: 100px;
+		color: #fff;
+		display: inline-block;
+		margin-right: 10px;
+		padding: 10px 14px;
+		text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+	}
+
+.section p {
+    padding: 16px 0 8px;
+    text-align: left;
+}
+
+.videoHolder {
+	margin: 0 auto;	/* this only does anything if a video is playing */
+	padding: 30px;
+}
+
+a.diffHolder {
+    background: #eee;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin: 20px 10px 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+    a.diffHolder:hover {
+        background: #ccc;
+        border-color: #444;
+        color: #000;
+    }
+
+.separateVideoHolder {
+    background: #666;
+    color: #fff;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.codeContainer { text-align: left; }
+
+p.videoLinkAutoplay {
+    padding: 8px 0 16px;
+    text-align: center;
+}
+
+p.videoLinkAutoplay a {
+	color: Red;
+	font-weight: bold;
+}
+
+	p.videoLinkAutoplay a:hover { color: #000; }
+
+/*------------------------------------------------------------------------------------ DOCUMENTATION (body.docs), doctype HTML5 --*/
+
+article {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #444;
+    margin-bottom: 20px;
+    padding: 12px 30px;
+    text-align: left;
+}
+
+/*-- Sections --*/
+
+body.docs h2 {
+    border-bottom: 1px solid #ccc;
+    color: #E78800;
+	font-size: 30px;
+    margin-bottom: 8px;
+}
+
+body.docs h3 { 
+	font-size: 26px;
+	font-style: italic; 
+}
+
+body.docs h4 { color: #E78800; }
+
+section {
+    padding: 10px 0;
+}
+
+/*-- Lists --*/
+
+section ul {
+    list-style: disc outside none;
+    padding: 8px 0 8px 40px;
+}
+
+section li {
+    line-height: 1.3;
+    padding: 3px 0;
+}
+
+.req { color: #f00; }
+.optional { 
+    color: #390;
+    font-weight: bold; 
+}
+
+/*-- Tables --*/
+
+table { margin: 8px 0; }
+
+th { 
+    background: #eee;
+    font-weight: bold; 
+}
+
+th, td {
+    border: 1px solid #fff;
+    line-height: 1.2;
+    padding: 9px 10px 10px;
+}
+
+td.date { font-style: italic; }
+
+/*-- Demo and Download --*/
+
+p.btnContainer { text-align: center; }
+
+p.btnContainer a {
+    background: #e78800;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #444;
+    color: #fff;
+    display: inline-block;
+    font-style: italic;
+    font-weight: bold;
+    padding: 10px 10px 12px;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+}
+
+/*-- Configuration --*/
+
+.config th { background: #ccc; }
+.config td { background: #eee; }
+
+td.desc,
+td.type {
+    font-style: italic;
+}
+
+h4 span {
+    color: #E78800;
+}
+
+/*-- To Do --*/
+
+td.active { 
+    color: #f00;
+    font-weight: bold; 
+}
+
+td.resolved { color: #007f00; }
+td.notPriority { color: #7f00ff; }

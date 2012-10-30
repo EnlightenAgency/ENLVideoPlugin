@@ -1,0 +1,86 @@
+﻿/*------------------------------------------------------------- Custom styles for HTML5 player controls simulating Flash controls --*/
+
+div[id^="vidDiv"] { position: relative; }
+
+/*-- Custom controls container --*/
+
+.flashPlayerTheme {
+    background: url(flashPlayerBg.png) repeat-x;
+    height: 21px;
+    margin: 0 auto;
+    position: relative;
+    width: 768px;
+}
+
+/*-- Play/Pause Button --*/
+
+.flashPlayerTheme .uiPlayPause {
+	background: url(flashPlayerPlayPause.png) no-repeat 0 0;
+    float: left;
+    height: 21px;
+    width: 27px;
+} 
+
+	.flashPlayerTheme .uiPlayPause:hover { background-position: 0 -21px; }
+	.flashPlayerTheme .uiPlayPause.pausedBtn { background-position: 0 -42px; }
+	.flashPlayerTheme .uiPlayPause.pausedBtn:hover { background-position: 0 -63px; }
+
+/*-- Seek Slider --*/
+
+.flashPlayerTheme .uiSeek.ui-slider {
+	background: url(flashPlayerSeekBg.png) repeat-x;
+	border-left: 1px solid #525252;
+	border-right: 1px solid #525252;
+	float: left;
+	height: 9px;
+	margin: 5px 0;
+	position: relative;
+	width: 88.5%;
+}
+
+.flashPlayerTheme .uiSeek .ui-slider-range {
+	background: url(flashPlayerSliderRange.png) repeat-x;
+	height: 7px;
+	margin-top: 1px;
+	position: absolute;
+}
+
+.flashPlayerTheme .uiSeek .ui-slider-handle {
+	background: url(flashPlayerSliderHandle.png) no-repeat 0 0;
+	cursor: pointer;
+	height: 16px;
+	margin-left: -3px;
+	position: absolute;
+		top: -3px;
+	width: 8px;
+	z-index: 2;
+}
+
+/*-- Time Elapsed --*/
+
+.flashPlayerTheme .uiTimer {
+	color: #fff;
+	float: left;
+	font: normal 10px/1.1 Arial, Helvetica, sans-serif;
+	padding: 4px 0 0 4px;
+}
+
+/*-- Volume Controls --*/
+
+.flashPlayerTheme .uiVolContainer { 
+	position: absolute;
+		top: 0; right: 0;
+}
+
+.flashPlayerTheme .uiVolSlider { display: none; }
+
+.flashPlayerTheme .uiVolBtn {
+	background: url(flashPlayerVol.png) no-repeat 0 0;
+	cursor: pointer;
+	height: 21px;
+	width: 27px;
+}
+
+	.flashPlayerTheme .uiVolBtn:hover { background-position: 0 -21px; }
+	.flashPlayerTheme .uiVolBtn.volumeMute { background-position: 0 -42px; }
+	.flashPlayerTheme .uiVolBtn.volumeMute:hover { background-position: 0 -63px; }

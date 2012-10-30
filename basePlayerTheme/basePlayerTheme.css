@@ -1,0 +1,129 @@
+﻿/*------------------------------------------------------------- Custom styles for HTML5 player controls simulating Flash controls --*/
+
+div[id^="vidDiv"] { position: relative; }
+
+/*-- Custom controls container --*/
+
+.customVidControls {
+	background: #000;
+    background: rgba(0,0,0,.7);
+    border: 3px solid rgba(255,255,255,.2);
+    border-radius: 5px;
+    height: 22px;
+    margin: -50px auto 0;
+    padding: 8px;
+    position: relative;
+    width: 730px;
+}
+
+.customVidControls .uiPlayPause,
+.customVidControls .uiVolBtn {
+	background: url(basePlayerControls.png) no-repeat 0 0;
+}
+
+/*-- Play/Pause Button --*/
+
+.customVidControls .uiPlayPause {
+	background-position: 0 0;
+    float: left;
+    height: 22px;
+    padding-right: 10px;
+    width: 22px;
+}
+
+	.customVidControls .uiPlayPause.pausedBtn { background-position: 0 -22px; }
+
+/*-- Seek Slider --*/
+
+.customVidControls .uiSeek.ui-slider {
+	background: #666;
+	border: 1px solid #525252;
+	border-radius: 6px;
+	float: left;
+	height: 12px;
+	margin: 5px 0;
+	position: relative;
+	width: 84%;
+}
+
+.customVidControls .uiSeek .ui-slider-range {
+	background: #ccc;
+	border-radius: 6px 0 0 6px;
+	height: 12px;
+	position: absolute;
+}
+
+.customVidControls .uiSeek .ui-slider-handle {
+	background: url(sliderHandle.png) no-repeat 0 0;
+	cursor: pointer;
+	height: 22px;
+	margin-left: -8px;
+	position: absolute;
+		top: -5px;
+	width: 22px;
+	z-index: 2;
+}
+
+/*-- Time Elapsed --*/
+
+.customVidControls .uiTimer {
+	color: #fff;
+	float: left;
+	font: normal 12px/1.1 Arial, Helvetica, sans-serif;
+	padding: 5px 0 0 14px;
+}
+
+/*-- Volume Controls --*/
+
+.customVidControls .uiVolContainer { 
+	height: 108px;
+	position: absolute;
+		bottom: 8px; right: 8px;
+	width: 22px;
+}
+
+.customVidControls .uiVolSlider {
+	background: #525252;
+	border-radius: 2px;
+	box-shadow: 0 0 3px #666;
+	display: block;
+	height: 70px;
+	position: absolute;
+		left: 8px; top: 0;
+	width: 4px;
+}
+
+	.customVidControls .uiVolContainer.muted .uiVolSlider { display: none; }
+
+.customVidControls .uiVolSlider .ui-slider-range { 
+	background: #eee;
+	border-radius: 2px;
+	height: 120px;
+	position: absolute;
+		bottom: 0; left: 0;
+	width: 4px;
+}
+
+.customVidControls .uiVolSlider .ui-slider-handle {
+	background: #fff;
+	border: 1px solid #777;
+	border-radius: 2px;
+	cursor: pointer;
+	height: 4px;
+	margin-bottom: -2px;
+	position: absolute;
+		left: -4px;
+	width: 10px;
+	z-index: 2;
+}
+
+.customVidControls .uiVolBtn {
+	background-position: 0 -44px;
+	cursor: pointer;
+	height: 22px;
+	position: absolute;
+		bottom: 0;
+	width: 22px;
+}
+
+	.customVidControls .uiVolBtn.volumeMute { background-position: 0 -66px; }

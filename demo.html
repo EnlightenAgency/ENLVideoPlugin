@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ENL Video Plugin | Demo</title>
+    <link rel="stylesheet" href="for-demo-only/styles.css"/>
+    <link rel="stylesheet" href="colorbox/colorbox.css" />
+    <link rel="stylesheet" href="flashPlayerTheme/flashPlayerTheme.css" />
+    <!--link rel="stylesheet" href="jqueryUIstyles/jqueryUIstyles.css" /-->
+    <link rel="stylesheet" href="basePlayerTheme/basePlayerTheme.css" />
+</head>
+<body class="demo">
+
+	<h1>ENL Video Plugin | Demo</h1>
+
+    <div class="nav">
+        <ul class="demoNav">
+            <li class="active"><a href="demo.html">Basic Demos</a></li>
+            <li><a href="demo-autoplay-nolink.html?videoURL=video/FE_768x432_h264_750Kbps.mp4&amp;videoWidth=768&amp;videoHeight=432&amp;videoDuration=114">Auto-play Demo: No Link</a></li>
+            <li><a href="demo-autoplay-linkonpage.html?videoURL=video/FE_Serum_768x432_h264_750Kbps.mp4">Auto-play Demo: Link on Page</a></li>
+        </ul>
+    </div>
+
+<!-- Video embedded into the page with parameters in the link (a la John Frieda) -->
+	<div class="section">
+		<h2><span>1a</span>Video embedded in the page (has "rel" parameters)</h2>
+		
+		<!-- BEGIN VIDEO1a -->
+		<div id="video1a" class="videoHolder video1">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded hasParams videoLink videoLink1a" rel="videoparams::640|360|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				Play the video!
+			</a>
+		</div>
+		<!-- END VIDEO1a -->
+	
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video1a" class="videoHolder video1"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded hasParams videoLink videoLink1a" rel="videoparams::640|360|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						Play the video!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('.video1 a').ENLvideo();
+			</code>
+
+			<h4>Custom Event: do something when the video ends</h4>
+
+			<code>
+				<span class="cmt">// When a video is initialized, use the init event to store the video's vidDivID and link as vars in global scope or scope of parent function</span><br>
+				var vidDiv;<br>
+				var $videoLink;<br>
+	        	$(document).on('ENLvideoInit', function(e, vidDivID, $thisLink) {
+	            	<span class="codeIndent1">vidDiv = vidDivID;<br>
+	            	videoLink = $thisLink;</span>
+	        	});
+        	</code>
+
+			<code>
+				$(document).on('VideoEnded', function(e, thisVideo) {
+					<span class="codeIndent1">if ($videoLink.hasClass('videoLink1a')) {</span>
+						<span class="codeIndent2">alert("The video is over.");</span>
+					<span class="codeIndent1">}</span>
+				});
+			</code>
+		</div>
+	</div>
+
+<!-- Video embedded into the page with parameters in the link (a la John Frieda) -->
+	<div class="section">
+		<h2><span>1b</span>Video embedded in the page (has "rel" parameters); same call as 1a (multiple video support)</h2>
+		
+		<!-- BEGIN VIDEO1b -->
+		<div id="video1b" class="videoHolder video1">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded hasParams videoLink videoLink1b" rel="videoparams::576|324|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				Play the video!
+			</a>
+		</div>
+		<!-- END VIDEO1b -->
+
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video1b" class="videoHolder video1"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded hasParams videoLink videoLink1b" rel="videoparams::576|324|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						Play the video!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('.video1 a').ENLvideo();
+			</code>
+
+			<h4>Custom Event: do something when the video progress reaches 25%</h4>
+
+			<code>
+				<span class="cmt">// When a video is initialized, use the init event to store the video's vidDivID and link as vars in global scope or scope of parent function</span><br>
+				var vidDiv;<br>
+				var $videoLink;<br>
+	        	$(document).on('ENLvideoInit', function(e, vidDivID, $thisLink) {
+	            	<span class="codeIndent1">vidDiv = vidDivID;<br>
+	            	videoLink = $thisLink;</span>
+	        	});
+        	</code>
+			
+			<code>
+				$(document).on('VideoProgress_25', function(e, thisVideo) {
+					<span class="codeIndent1">if ($videoLink.hasClass('videoLink1b')) {</span>
+						<span class="codeIndent2">alert("The video has played 25%.");</span>
+					<span class="codeIndent1">}</span>
+				});
+			</code>
+		</div>
+
+	</div>
+
+<!-- Video embedded into the page with NO parameters in the link: should open in a different location than the link! -->
+	<div class="section">
+		<h2><span>2</span>Multiple videos embedded in the page that open in a different location than link</h2>
+		
+		<!-- BEGIN VIDEO2 -->
+		<div id="video2-linkHolder" class="videoLinkHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded noParams diffHolder videoLink videoLink2a">
+				Play the <strong>first</strong> video in the div below!
+			</a>
+			<a href="video/FE_Serum_768x432_h264_750Kbps.mp4" class="embedded noParams diffHolder videoLink videoLink2b">
+				Play the <strong>second</strong> video in the div below!
+			</a>
+		</div>
+
+		<div id="video2" class="separateVideoHolder">
+			<p>Each of the videos linked above will appear inside this div one at a time. The video links will stay visible.</p>
+		</div>
+		<!-- END VIDEO2 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video2-linkHolder" class="videoLinkHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded noParams diffHolder videoLink videoLink2a"&gt;</span>
+						<span class="codeIndent2">Play the first video in the div below!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+					<span class="codeIndent1">&lt;a href="video/FE_Serum_768x432_h264_750Kbps.mp4" class="embedded noParams diffHolder videoLink videoLink2b"&gt;</span>
+						<span class="codeIndent2">Play the second video in the div below!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+
+				<p>&lt;div id="video2" class="separateVideoHolder"&gt;&lt;/div&gt;</p>
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video2-linkHolder a').ENLvideo({ 
+					<span class="codeIndent1">videoContainerClass: 'separateVideoHolder',<br>
+					openVideoElsewhere: true,<br>
+					hideVideoLink: false,<br>
+					videoWidth: 576,<br>
+					videoHeight: 324</span>
+				});
+			</code>
+		</div>
+		
+	</div>
+
+<!-- Video embedded into the page with NO parameters in the link -->
+	<div class="section">
+		<h2><span>3</span>Video embedded in the page with custom video div ID</h2>
+		
+		<!-- BEGIN VIDEO3 -->
+		<div id="video3" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded noParams videoLink">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				Play the video!
+			</a>
+		</div>
+		<!-- END VIDEO3 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video3" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="embedded noParams videoLink"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						Play the video!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video3 a').ENLvideo({ 
+					<span class="codeIndent1">vidDivID: 'differentVideoDivName'</span>
+				});
+			</code>
+		</div>
+		
+	</div>
+
+<!-- Video opens in LightBox with NO parameters in the link -->
+	<div class="section">
+		<h2><span>4</span>LightBox dialog video</h2>
+		
+		<!-- BEGIN VIDEO4 -->
+		<div id="video4" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="lightBox noParams videoLink">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				Play the video in a LightBox!
+			</a>
+		</div>
+		<!-- END VIDEO4 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video4" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="lightBox noParams videoLink"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						Play the video in a LightBox!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video4 a').ENLvideo({ 
+					<span class="codeIndent1">lightbox: true,<br>
+					lightboxOverlayOpacity: 0.5,<br>
+					videoWidth: 384,<br>
+					videoHeight: 216</span>
+				});
+			</code>
+		</div>
+		
+	</div>
+
+<!-- Video opens in LightBox with parameters in the link -->
+	<div class="section">
+		<h2><span>5</span>LightBox dialog video (has "rel" parameters) with lightboxClosed callback</h2>
+		
+		<!-- BEGIN VIDEO5 -->
+		<div id="video5" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="lightBox hasParams videoLink" rel="videoparams::640|360|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				Play the video in a LightBox!
+			</a>
+		</div>
+		<!-- END VIDEO5 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video5" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="lightBox hasParams videoLink" rel="videoparams::640|360|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						Play the video in a LightBox!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video5 a').ENLvideo({
+					<span class="codeIndent1">lightbox: true,<br>
+					hideVideoLink: false</span>
+				});
+			</code>
+
+			<h4>Custom Event: do something when the LightBox is closed</h4>
+			<code>
+				$(document).on('lightboxClosed', function(e, $thisLink) {
+					<span class="codeIndent1">if ($thisLink.hasClass('hasParams')) {</span>
+						<span class="codeIndent2">alert("The #4 example LightBox was closed.");</span>
+					<span class="codeIndent1">}</span>
+				});
+			</code>
+		</div>
+		
+	</div>
+
+<!-- Video opens with a custom callback function -->
+	<div class="section">
+		<h2><span>6</span>Callback function</h2>
+		
+		<!-- BEGIN VIDEO6 -->
+		<div id="video6" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="callback hasParams videoLink" rel="videoparams::768|432|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				This embedded video has a custom callback function on click!
+			</a>
+		</div>
+		<!-- END VIDEO6 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video6" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="callback hasParams videoLink" rel="videoparams::768|432|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						This embedded video has a custom callback function on click!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video6 a').ENLvideo({ 
+					<span class="codeIndent1">callback: function() {</span>
+						<span class="codeIndent2">alert("This is a custom callback function on click! Hit okay to continue.");</span>
+					<span class="codeIndent1">}</span>
+				});
+			</code>
+		</div>
+	</div>
+
+<!-- HTML5 Video with Custom Controls -->
+	<div class="section">
+		<h2><span>7</span>HTML5 Custom Controls</h2>
+		
+		<!-- BEGIN VIDEO7 -->
+		<div id="video7" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="hasCustomControls hasParams videoLink" rel="videoparams::768|432|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				This video has custom controls if browser supports HTML5!
+			</a>
+		</div>
+		<!-- END VIDEO7 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video7" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="hasCustomControls hasParams videoLink" rel="videoparams::768|432|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						This video has custom controls if browser supports HTML5!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video7 a').ENLvideo({ 
+					<span class="codeIndent1">customControls: true,<br>
+					customControlsOnHover: true</span>
+				});
+			</code>
+
+			<h3>Base Theme</h3>
+			<p>Download the base theme files (images and CSS) here: <a href="basePlayerTheme.zip">basePlayerTheme.zip</a></p>
+			
+		</div>
+		
+	</div>
+
+<!-- HTML5 Video with Flash Player Custom Controls -->
+	<div class="section">
+		<h2><span>8</span>HTML5 "Flash Player" Controls</h2>
+		
+		<!-- BEGIN VIDEO8 -->
+		<div id="video8" class="videoHolder">
+			<a href="video/FE_768x432_h264_750Kbps.mp4" class="hasCustomControls hasParams videoLink" rel="videoparams::768|432|300">
+				<img src="images/posterImg.png" alt="Sample Video Image" class="posterImg" />
+				This video has custom controls if browser supports HTML5!
+			</a>
+		</div>
+		<!-- END VIDEO8 -->
+		
+		<div class="codeContainer">
+			<h3>HTML</h3>
+			<code>
+				&lt;div id="video8" class="videoHolder"&gt;				
+					<span class="codeIndent1">&lt;a href="video/FE_768x432_h264_750Kbps.mp4" class="hasCustomControls hasParams videoLink" rel="videoparams::768|432|300"&gt;</span>
+						<span class="codeIndent2">&lt;img src="images/posterImg.png" alt="Sample Video Image" class="posterImg"><br>
+						This video has custom controls if browser supports HTML5!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+			
+			<h3>jQuery</h3>
+			
+			<code>
+				$('#video8 a').ENLvideo({ 
+					<span class="codeIndent1">customControls: true<br>
+						customControlsTheme: 'flashPlayerTheme'</span>
+				});
+			</code>
+
+			<h3>Flash Player Theme</h3>
+			<p>Download the Flash Player Theme files (images and CSS) here: <a href="flashPlayerTheme.zip">flashPlayerTheme.zip</a></p>
+			
+		</div>
+		
+	</div>
+
+<!-- FOOTER -->
+
+	<div class="footer">
+		<p><a href="#">Back to Top</a> &uarr; (more demos) | <a href="index.html">ENLvideo.js Documentation</a></p>
+	</div>
+
+	<!-- REQUIRED jQuery library -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+	<!-- jQuery UI slider for custom HTML5 controls -->
+	<script src="js/jquery.ui.slider.min.js"></script>
+	
+	<!-- REQUIRED swfobject -->
+	<script src="js/swfobject.min.js"></script>
+
+	<!-- OPTIONAL Colorbox plugin -->
+	<script src="js/jquery.colorbox-min.js"></script>
+
+	<!-- OPTIONAL webtrends tracking -->
+	<script src="js/webtrends.min.js" type="text/javascript"></script>
+
+	<!-- REQUIRED ENLvideo plugin -->
+	<script src="js/jquery.ENLvideo.js"></script>
+
+	<!-- REQUIRED jQuery to call the plugin: this should be in a separate js file for the project, it is in the footer for example purposes only -->
+	<script type="text/javascript">
+
+// DEMO Video Examples
+
+		$('a[href=#]').on("click", function (e) {
+			$('html, body').animate({ scrollTop: 0 }, 'slow');
+			e.preventDefault();
+		});
+	
+	//--- Example 1a and 1b
+	    $('.video1 a').ENLvideo({
+	    	flashPrefix: 'flash/'
+	    });
+
+	    var vidDiv,
+			$videoLink;
+
+		$(document).on('ENLvideoInit', function(e, vidDivID, $thisLink) {
+			vidDiv = vidDivID;
+			$videoLink = $thisLink;
+		});
+
+		// VideoEnded Custom Event
+		$(document).on('VideoEnded', function(e, thisVideo){
+			if ($videoLink.hasClass('videoLink1a')) {
+				alert("The video is over.");
+			}
+		});
+
+		// Video Progress Custom Event
+		$(document).on('VideoProgress_25', function(e, thisVideo){
+			if ($videoLink.hasClass('videoLink1b')) {
+				alert("The video has played 25%.");
+			}
+		});
+
+	//--- Example 2
+		$('#video2-linkHolder a').ENLvideo({
+			videoContainerClass: 'separateVideoHolder',
+			openVideoElsewhere: true,
+			hideVideoLink: false,
+			videoWidth: 576,
+			videoHeight: 324,
+			flashPrefix: 'flash/'
+
+        });
+
+		// Hide the text in the separate div, this has nothing to do with the plugin functionality, it's just for the demo page
+		$('#video2-linkHolder a').click(function() {
+			$('.separateVideoHolder p').hide();
+		});
+
+	//--- Example 3
+		$('#video3 a').ENLvideo({
+			vidDivID: 'differentVideoDivName',
+			flashPrefix: 'flash/'
+		});
+
+	//--- Example 4
+		$('#video4 a').ENLvideo({
+			lightbox: true,
+			lightboxOverlayOpacity: 0.5,
+			hideVideoLink: false,
+			videoWidth: 384,
+			videoHeight: 216,
+			flashPrefix: 'flash/'
+		});
+
+	//--- Example 5
+		$('#video5 a').ENLvideo({ 
+			lightbox: true,
+			hideVideoLink: false,
+			flashPrefix: 'flash/'
+		});
+
+		// Custom Event
+		$(document).on("lightboxClosed", function(e, $thisLink){
+			if ($thisLink.hasClass("hasParams")) {
+				alert("The #5 example LightBox was closed.");
+			}
+		});
+
+	//--- Example 6
+		$('#video6 a').ENLvideo({
+			flashPrefix: 'flash/',
+			callback: function() {
+				alert("This is a custom callback function on click! Hit okay to continue.");
+			}
+		});
+
+	//--- Example 7
+		$('#video7 a').ENLvideo({
+			flashPrefix: 'flash/',
+			customControls: true,
+			customControlsOnHover: true
+		});
+
+	//--- Example 8
+		$('#video8 a').ENLvideo({
+			flashPrefix: 'flash/',
+			customControls: true,
+			customControlsTheme: 'flashPlayerTheme'
+		});
+
+	</script>
+
+<!-- REQUIRED start SmartSource Data Collector -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var _tag = new WebTrends();
+        _tag.dcsGetId();
+        //]]>>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        // Add custom parameters here.
+        //_tag.DCSext.param_name=param_value;
+        _tag.dcsCollect();
+        //]]>>
+    </script>
+    <noscript>
+        <div></div>
+    </noscript>
+
+<!--REQUIRED Google Analytics -->
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+	<script type="text/javascript">
+		try {
+		    var firstTracker = _gat._getTracker("UA-385129-999"); // Global Tag
+		    firstTracker._setDomainName("none");
+		    firstTracker._trackPageview();
+	  } catch(err) {}
+
+	</script>
+
+</body>
+</html>

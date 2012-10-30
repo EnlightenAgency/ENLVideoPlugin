@@ -1,0 +1,44 @@
+﻿<!-- REQUIRED analytics tracking: these functions should already exist in the project -->
+	<script type="text/javascript">
+		function riaTrack(trackingParam) {
+		    goToPage(trackingParam);
+		}
+		function goToPage(pg) {
+		    dcsMultiTrack('DCS.dcsuri', pg, 'DCS.dcsqry', '', 'WT.ti', pg);
+		    firstTracker._trackPageview(pg);
+		}
+
+	</script>
+
+<!-- REQUIRED start SmartSource Data Collector -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var _tag = new WebTrends();
+        _tag.dcsGetId();
+        //]]>>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        // Add custom parameters here.
+        //_tag.DCSext.param_name=param_value;
+        _tag.dcsCollect();
+        //]]>>
+    </script>
+    <noscript>
+        <div></div>
+    </noscript>
+
+<!--REQUIRED Google Analytics -->
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+	<script type="text/javascript">
+		try {
+		    var firstTracker = _gat._getTracker("UA-385129-999"); // Global Tag
+		    firstTracker._setDomainName("none");
+		    firstTracker._trackPageview();
+	  } catch(err) {}
+
+	</script>

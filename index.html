@@ -1,0 +1,604 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>ENLvideo Plugin | Documentation</title>
+	<link rel="stylesheet" href="for-demo-only/styles.css">
+</head>
+<body class="docs">
+
+	<header>
+
+		<h1>ENL Video Plugin | Documentation</h1>
+
+	</header>
+
+	<nav>
+		<ul>
+			<li><a href="#features">Features</a></li>
+			<li><a href="#demo">Demos</a></li>
+			<li><a href="#download">Downloads</a></li>
+			<li><a href="#howToUse">How to Use</a></li>
+			<li><a href="#config">Configuration Options</a></li>
+            <li><a href="#toDo">To Do</a></li>
+			<li><a href="#changelog">Changelog</a></li>
+		</ul>
+	</nav>
+
+	<article>
+		<section id="features" class="features">
+			<h2>Features</h2>
+			<p>The Enlighten <strong>ENLvideo.js</strong> jQuery plugin supports the following features:</p>
+			<ul>
+				<li>Plays HTML5 h.264 video in supported browsers; falls back to Flash when unsupported</li>
+				<li>Embeds videos in a page, or:</li>
+				<li>Displays videos in <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> jQuery LightBox</li>
+				<li>When using LightBox, if window dimensions are small, LightBox and video are resized to fit within viewport</li>
+				<li>Supports multiple videos on a page</li>
+				<li>Supports multiple videos swapping into the same element</li>
+				<li>Callback function</li>
+				<li>Custom event triggers</li>
+				<li>Tracking analytics support for Webtrends and Google Analytics</li>
+				<li>Custom tracking events</li>
+				<li>Autoplay in a LightBox on page load, if ENLvideo.autoplay.js is included</li>
+				<li>Custom styleable HTML5 video player controls</li>
+			</ul>
+		</section>
+
+		<section id="demo" class="demo">
+			<h2>Demos</h2>
+			<p>Sample demonstrations of the functionality of this plugin are available:</p>
+			<p class="btnContainer">
+                <a href="demo.html">Basic Demos</a>&nbsp;&nbsp;&nbsp;
+                <a href="demo-autoplay-nolink.html?videoURL=video/FE_768x432_h264_750Kbps.mp4&videoWidth=768&videoHeight=432&videoDuration=114">Auto-play Demo: No Link</a>&nbsp;&nbsp;&nbsp;
+                <a href="demo-autoplay-linkonpage.html?videoURL=video/FE_Serum_768x432_h264_750Kbps.mp4">Auto-play Demo: Link on Page</a>
+            </p>
+		</section>
+
+		<section id="download" class="download">
+			<h2>Downloads</h2>
+			<p>Download the current version of the ENLvideo plugin and the autoplay add-on here.</p>
+			<p class="btnContainer"><a href="js/jquery.ENLvideo.js">jquery.ENLvideo.js (27 kb)</a>&nbsp;&nbsp;&nbsp;<a href="js/jquery.ENLvideo.autoplay.js">jquery.ENLvideo.autoplay.js (2 kb)</a></p>
+			<p>Additional (required) files are located in the file structure. Some of these are linked below, but you'll probably want to pull them down from source control instead.</p>
+		</section>
+
+		<section id="howToUse" class="howToUse">
+			<h2>How to Use</h2>
+			<p>
+				You will need the following to use this plugin:
+			</p>
+
+			<ul>
+				<li><strong class="req">Required:</strong> Include the jQuery JavaScript library in your document</li>
+				<li><strong class="req">Required:</strong> Include the <em><a href="js/swfobject.min.js">swfobject.min.js</a></em> file</li>
+				<li><strong class="req">Required:</strong> Include a Flash directory and the <em><a href="flash/FlashVideoPlayer_scale.swf">Flash player .swf object</a></em></li>
+				<li><strong class="req">Required:</strong> Set up a directory for your video(s)</li>
+				<li><strong class="req">Required:</strong> Include webtrends (<em><a href="js/webtrends.min.js">webtrends.min.js</a></em>)</li>
+				<li><strong class="req">Required:</strong> Add the following <em><a href="js/trackingScriptTags.txt">tracking script tags</a></em> to your HTML page, replacing the Google Analytics ID appropriately</li>
+				<li><em class="optional">Optional:</em> Include the <a href="http://www.jacklmoore.com/colorbox">ColorBox</a> files: <em><a href="js/jquery.colorbox-min.js">jquery.colorbox-min.js</a></em> file, ColorBox images directory + ColorBox CSS (keep ColorBox images folder and CSS file in the same directory, or make sure you edit the CSS with the correct image paths)</li>
+				<li><strong class="req">Required:</strong> Include the <em><a href="js/jquery.ENLvideo.js">jquery.ENLvideo.js</a></em> file</li>
+				<li><em class="optional">Optional:</em> Include the <em><a href="js/jquery.ENLvideo.autoplay.js">jquery.ENLvideo.autoplay.js</a></em> file if you want autoplay functionality (requires ColorBox)</li>
+				<li><em class="optional">Optional:</em> Include the <em><a href="js/jquery.ui.slider.min.js">jquery.ui.slider.min.js</a></em> file if you want custom controls for the HTML5 video player (also consider including the jQuery UI slider images and styles for a 'default' styling start-point, or the <a href="flashPlayerTheme.zip">flashPlayerTheme.zip</a> images + CSS)</li>
+			</ul>
+			
+			<h3>Syntax</h3>
+			<p>The basic syntax for using this plugin is as follows. Please edit as necessary, or see the <a href="demo.html">Demo</a> for more examples.</p>
+			
+			<h4>HTML</h4>
+			<ul>
+				<li><strong class="req">Required:</strong> Video-containing element with a unique ID, and a class of <em class="opt">.videoHolder</em> unless otherwise specified in <a href="#config">Configuration Options</a></li>
+				<li><strong class="req">Required:</strong> Link to the video relative to the HTML with a class of <em class="opt">.videoLink</em> unless otherwise specified in <a href="#config">Configuration Options</a></li>
+				<li><em class="optional">Optional:</em> You can give the video link a <em class="opt">rel</em> attribute with video parameters of width, height (in pixels), and duration (in seconds) integer values (see example below)</li>
+				<li><em class="optional">Optional:</em> Text inside the video link describing the video (should be accessible to screen readers, but not necessarily visible)</li>
+				<li><em class="optional">Optional:</em> An image inside the link that represents the video (the "poster" image)</li>
+			</ul>
+			
+			<code>
+				&lt;div id="<span class="opt">video1</span>" class="<span class="opt">videoHolder</span>"&gt;				
+					<span class="codeIndent1">&lt;a href="<span class="opt">video/FE_768x432_h264_750Kbps.mp4</span>" class="<span class="opt">videoLink</span>" <span class="opt">rel="videoparams::768|432|300"</span>&gt;</span>
+						<span class="codeIndent2 opt">&lt;img src="posterImg.png" alt="Sample Video Image"&gt;<br>
+						Play the video!</span>
+					<span class="codeIndent1">&lt;/a&gt;</span>
+				&lt;/div&gt;
+			</code>
+
+			<h4>jQuery</h4>
+
+			<p>Use the following jQuery code to call the plugin on your desired video link selectors:</p>
+			
+			<code>
+				$('.<span class="opt">videoLink</span>').ENLvideo();
+			</code>
+
+			<p>Or with <a href="#config"><strong>plugin configuration options</strong></a>:</p>
+
+			<code>
+				$('.<span class="opt">videoLink</span>').ENLvideo({ 
+					<span class="codeIndent1 opt">option1: 'string',<br>
+					option2: integer,<br>
+					option3: boolean,<br>
+					callback: function() { }</span> 
+				});
+			</code>
+
+			<p>The plugin can add <a href="#customControls"><strong>custom HTML5 controls</a></strong> that can be styled with CSS:</p>
+
+			<code>
+				$('.<span class="opt">videoLink</span>').ENLvideo({ 
+					<span class="codeIndent1 opt">customControls: true,<br>
+					customControlsTheme: 'myCustomControlsTheme',<br>
+					customControlsOnHover: true</span> 
+				});
+			</code>
+
+			<p>Also supports <a href="#customEvents"><strong>custom events</strong></a>:</p>
+
+			<code>
+				$(document).on('<span class="opt">event</span>', function(e, <span class="opt">parameter</span>) {
+					<span class="codeIndent1 cmt">// code goes here</span>
+				});
+			</code>
+
+            <h4>Query Strings</h4>
+
+            <p>This plugin also supports <a href="#autoPlay"><strong>autoplay</strong></a> (must include the autoplay add-on JS file):</p>
+
+			<code>
+				http://<span class="opt">[path]</span><span class="sep">?</span>videoURL=<span class="opt">video/video_file.mp4</span><span class="sep">&</span>videoWidth=<span class="opt">768</span><span class="sep">&</span>videoHeight=<span class="opt">432</span><span class="sep">&</span>videoDuration=<span class="opt">114</span>
+			</code>
+			
+		</section>
+
+		<section id="config" class="config">
+			<h2>Configuration Options</h2>
+
+			<ul>
+				<li><a href="#pluginOptions">Plugin Options</a></li>
+				<li><a href="#customControls">Custom HTML5 Controls</a></li>
+				<li><a href="#customEvents">Custom Events</a></li>
+				<li><a href="#autoPlay">Autoplay</a></li>
+			</ul>
+
+			<h3 id="pluginOptions">Plugin Options</h3>
+			<p>
+				You may provide configuration options if needed. If no options are specified, default values will be used instead. The following options (and their defaults) are as follows:
+			</p>
+			<table>
+				<thead>
+					<tr>
+						<th>Option</th>
+						<th>Description</th>
+						<th>Type</th>
+						<th>Default</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="option">applyContainerWidth</td>
+						<td class="desc">Apply the video width to the videoContainerClass element</td>
+						<td class="type">Boolean</td>
+						<td class="default">false</td>
+					</tr>
+					<tr>
+						<td class="option">callback</td>
+						<td class="desc">Specify a custom callback function to execute when the plugin is called</td>
+						<td class="type">Function</td>
+						<td class="default">function() { }</td>
+					</tr>
+					<tr>
+						<td class="option">customControls</td>
+						<td class="desc">Specify if custom controls should replace the HTML5 browser video controls (needs jQuery UI slider; see <a href="#customControls">Custom Controls</a>)</td>
+						<td class="type">Boolean</td>
+						<td class="default">false</td>
+					</tr>
+					<tr>
+						<td class="option">customControlsTheme</td>
+						<td class="desc">Specify a name for your custom controls theme (class appended to controls container)</td>
+						<td class="type">String</td>
+						<td class="default">'customVidControls'</td>
+					</tr>
+					<tr>
+						<td class="option">customControlsOnHover</td>
+						<td class="desc">Only show custom controls when hovering over video</td>
+						<td class="type">Boolean</td>
+						<td class="default">false</td>
+					</tr>
+					<tr>
+						<td class="option">volumeSliderOrientation</td>
+						<td class="desc">Orientation of custom controls volume slider (vertical OR horizontal)</td>
+						<td class="type">String</td>
+						<td class="default">'vertical'</td>
+					</tr>
+					<tr>
+						<td class="option">flashPlayerControlHeight</td>
+						<td class="desc">Height (in pixels) of the Flash player</td>
+						<td class="type">Integer</td>
+						<td class="default">22</td>
+					</tr>
+					<tr>
+						<td class="option">flashPrefix</td>
+						<td class="desc">Flash directory path relative to the JS plugin call file (<strong>../flash/</strong>videoPlayer.swf)</td>
+						<td class="type">String</td>
+						<td class="default">'../flash/'</td>
+					</tr>
+					<tr>
+						<td class="option">flashVersion</td>
+						<td class="desc">Flash 9.0.115 or higher required for h.264 video codec support</td>
+						<td class="type">String</td>
+						<td class="default">'9.0.115'</td>
+					</tr>
+					<tr>
+						<td class="option">flashVideoPrefix</td>
+						<td class="desc">The path of the page's video link relative to the Flash player (<strong>../</strong>video/video.mp4)</td>
+						<td class="type">String</td>
+						<td class="default">'../'</td>
+					</tr>
+					<tr>
+						<td class="option">playerURL</td>
+						<td class="desc">Relative path to the Flash player from the flashPrefix location</td>
+						<td class="type">String</td>
+						<td class="default">'FlashVideoPlayer_scale.swf'</td>
+					</tr>
+					<tr>
+						<td class="option">flashWmode</td>
+						<td class="desc">The wmode of the Flash object (opaque OR transparent)</td>
+						<td class="type">String</td>
+						<td class="default">'opaque'</td>
+					</tr>
+					<tr>
+						<td class="option">hideVideoLink</td>
+						<td class="desc">Hide the video link once it has been clicked</td>
+						<td class="type">Boolean</td>
+						<td class="default">true</td>
+					</tr>
+					<tr>
+						<td class="option">lightbox</td>
+						<td class="desc">Display the video in a LightBox (set the hideVideoLink option to false to keep the link visible)</td>
+						<td class="type">Boolean</td>
+						<td class="default">false</td>
+					</tr>
+					<tr>
+						<td class="option">lightboxOverlayOpacity</td>
+						<td class="desc">The opacity of the LightBox overlay (range 0 to 1)</td>
+						<td class="type">Float</td>
+						<td class="default">0.85</td>
+					</tr>
+					<tr>
+						<td class="option">nonflashVideoContentPart1</td>
+						<td class="desc">Text for the no Flash warning</td>
+						<td class="type">String</td>
+						<td class="default">'To see this video you need JavaScript enabled and the latest version of Flash. You can also use a browser that supports H.264 HTML5 Video options.'</td>
+					</tr>
+					<tr>
+						<td class="option">nonflashVideoContentPart2LinkText</td>
+						<td class="desc">Text for the link to download Flash</td>
+						<td class="type">String</td>
+						<td class="default">'Click here to download Flash'</td>
+					</tr>
+					<tr>
+						<td class="option">nonflashVideoContentPart2LinkUrl</td>
+						<td class="desc">URL to download Flash</td>
+						<td class="type">String</td>
+						<td class="default">'http://www.adobe.com/go/getflashplayer'</td>
+					</tr>
+					<tr>
+						<td class="option">nonflashVideoContentPart2Text</td>
+						<td class="desc">Text following the link to download Flash</td>
+						<td class="type">String</td>
+						<td class="default">' from the Adobe download center.'</td>
+					</tr>
+					<tr>
+						<td class="option">openVideoElsewhere</td>
+						<td class="desc">If loading the video in a videoContainerClass other than the link container, set to true; videoContainerClass must be unique to that call</td>
+						<td class="type">Boolean</td>
+						<td class="default">false</td>
+					</tr>
+					<tr>
+						<td class="option">videoContainerClass</td>
+						<td class="desc">Class of the DOM element that you want the video to be created in</td>
+						<td class="type">String</td>
+						<td class="default">'videoHolder'</td>
+					</tr>
+					<tr>
+						<td class="option">videoLinkClass</td>
+						<td class="desc">Class of the video link</td>
+						<td class="type">String</td>
+						<td class="default">'videoLink'</td>
+					</tr>
+					<tr>
+						<td class="option">vidDivID</td>
+						<td class="desc">ID of the div (HTML5) or object (non-HTML5) that will be created to contain the video. This will have a datestamp appended to it to make it unique, so in order to target these elements, use attribute selectors: [id^='vidDiv']</td>
+						<td class="type">String</td>
+						<td class="default">'vidDiv'</td>
+					</tr>
+					<tr>
+						<td class="option">videoDuration</td>
+						<td class="desc">Duration (in seconds) of the video</td>
+						<td class="type">Integer</td>
+						<td class="default">9999</td>
+					</tr>
+					<tr>
+						<td class="option">videoHeight</td>
+						<td class="desc">Height (in pixels) of the video</td>
+						<td class="type">Integer</td>
+						<td class="default">385</td>
+					</tr>
+					<tr>
+						<td class="option">videoWidth</td>
+						<td class="desc">Width (in pixels) of the video</td>
+						<td class="type">Integer</td>
+						<td class="default">640</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3 id="customControls">Custom HTML5 Video Controls</h3>
+			<p>Custom controls can be appended to HTML5 videos. Custom controls will hide the browser's default controls and override them with CSS-styleable control elements instead. The <a href="js/jquery.ui.slider.min.js">jQuery UI slider widget</a> is necessary to create the seek/progress and volume control sliders.</p>
+
+			<h4>Base Player Theme</h4>
+
+			<p>A "default" theme is available to get started with styling your own: <a href="basePlayerTheme.zip">basePlayerTheme.zip</a> (includes images and CSS). This way you can have a base set of styles to work from without having to include the jQuery UI styles/images. Include the files in your project and set the customControls option to true in your plugin call:</p>
+
+			<code>
+				$('.<span class="opt">videoLink</span>').ENLvideo({ 
+					<span class="codeIndent1 opt">customControls: true,<br>
+					customControlsOnHover: true</span> 
+				});
+			</code>
+
+			<h4>Flash Player Theme</h4>
+
+			<p>If you need to simulate the Flash player's controls on HTML5 browsers, you may download the premade Flash Player Theme: <a href="flashPlayerTheme.zip">flashPlayerTheme.zip</a> (includes images and CSS). Include the files in your project, set the customControls option to true, include the <strong>customControlsTheme</strong> option and set it to <em>'flashPlayerTheme'</em> in your plugin call. Flash controls are persistent (meaning they are always visible and do not fade on mouseout), so do NOT set the customControlsOnHover option (default value is false):</p>
+
+			<code>
+				$('.<span class="opt">videoLink</span>').ENLvideo({ 
+					<span class="codeIndent1 opt">customControls: true,<br>
+					customControlsTheme: 'flashPlayerTheme'</span> 
+				});
+			</code>
+
+			<h3 id="customEvents">Custom Events</h3>
+			<p>Several custom events are fired in the execution of the plugin. You may use these events in your project's JS code to listen for customized functionality. If you have multiple plugin calls and wish to only target one call (or even a specific video), you can create an <em>if</em> statement inside your on listener specifying the target element (see the <a href="demo.html">Demo</a> for examples).</p>
+
+			<p>Lightbox custom events are triggered in the <a href="http://www.jacklmoore.com/colorbox">ColorBox callbacks</a>:</p>
+
+			<h4>lightboxOpen</h4>
+			<code>
+				$(document).on('lightboxOpen', function(e, $thisLink*) {
+					<span class="codeIndent1 cmt">// Fires right before ColorBox begins to open</span>
+				});
+			</code>
+
+			<h4>lightboxComplete</h4>
+			<code>
+				$(document).on('lightboxComplete', function(e, $thisLink*) {
+					<span class="codeIndent1 cmt">// Fires right after video is created and loaded content is displayed</span>
+				});
+			</code>
+
+			<h4>lightboxCleanup</h4>
+			<code>
+				$(document).on('lightboxCleanup', function(e, $thisLink*) {
+					<span class="codeIndent1 cmt">// Fires at the start of the close process right before video is hidden</span>
+				});
+			</code>
+
+			<h4>lightboxClosed</h4>
+			<code>
+				$(document).on('lightboxClosed', function(e, $thisLink*) {
+					<span class="codeIndent1 cmt">// Fires once ColorBox is closed and right after video element is removed from the DOM</span>
+				});
+			</code>
+
+			<p>* <em>$thisLink</em> is the parameter for the jQuery object that refers to the link to the current video.</p>
+
+			<p>Tracking progress custom events will affect ALL videos unless the helper event "<strong>ENLvideoInit</strong>" is used to cache the video and link as variables to make them accessible to your other event handlers.</p>
+
+			<code>
+				<span class="cmt">// When a video is initialized, use the init event to store the video's vidDivID and link as vars in global scope or scope of parent function</span><br>
+				var <span class="opt">vidDiv</span>;<br>
+				var <span class="opt">$videoLink</span>;<br>
+	        	$(document).on('ENLvideoInit', function(e, vidDivID, $thisLink) {
+	            	<span class="codeIndent1"><span class="opt">vidDiv</span> = vidDivID;<br>
+	            	<span class="opt">$videoLink</span> = $thisLink;</span>
+	        	});
+        	</code>
+
+        	<h4>VideoEnded</h4>
+        	<code>
+        		<span class="cmt">// Use the stored video link or video to determine which video is playing</span><br>
+	        	$(document).on('<span class="opt">VideoEnded</span>', function(e, thisVideo<sup>&dagger;</sup>) {
+	        		<span class="codeIndent1 cmt">// code for ALL video(s) goes here</span>
+	            	<span class="codeIndent1">if (<span class="opt">videoLink</span>.hasClass('<span class="opt">someSpecificVideoClass</span>')) {</span>
+	                	<span class="codeIndent2 cmt">// code for specific video(s) goes here</span>
+	            	<span class="codeIndent1">}</span>
+	        	});
+			</code>
+
+			<h4>VideoProgress_<em><span>0</span> or <span>25</span> or <span>50</span> or <span>75</span> or <span>90</span></em></h4>
+			<code>
+				$(document).on("VideoProgress_<span class="opt">25</span>", function(e, thisVideo<sup>&dagger;</sup>) {
+					<span class="codeIndent1 cmt">// code for ALL video(s) goes here</span>
+					<span class="codeIndent1">if (<span class="opt">videoLink</span>.hasClass('<span class="opt">someSpecificVideoClass</span>')) {</span>
+	                	<span class="codeIndent2 cmt">// code for specific video(s) goes here</span>
+	            	<span class="codeIndent1">}</span>
+				});
+			</code>
+
+			<p><sup>&dagger;</sup> <em>thisVideo</em> is a parameter for the DOM element referring to the current video. <em>This returns undefined in Flash, so the event will affect all videos unless ENLvideoInit is used to store the video and link (as above).</em></p>
+
+			<h3 id="autoPlay">Autoplay</h3>
+			<p>Including <strong>ENLvideo.autoplay.js</strong> after <strong>ENLvideo.js</strong> and appending a query string to the URL can enable autoplay options. Autoplay is currently set up to open in a LightBox only, so do not forget the <strong>ColorBox JS/CSS/images</strong>.</p>
+
+			<h4>URL Query String with NO link on page</h4>
+
+			<p>If there is <em>no video link in the page DOM</em>, the autoplay JS creates a link and a container, the ENLvideo.js plugin is called on the newly-created link, and then a click event fires. This option should be used if the video should play on page load only. The URL must have the following queries appended to it:</p>
+
+			<ul>
+				<li>videoURL (including relative directory if applicable)</li>
+				<li>videoWidth (in pixels)</li>
+				<li>videoHeight (in pixels)</li>
+				<li>videoDuration (in seconds)</li>
+			</ul>
+
+			<code>
+				http://<span class="opt">[path]</span><span class="sep">?</span>videoURL=<span class="opt">video/video_file.mp4</span><span class="sep">&</span>videoWidth=<span class="opt">768</span><span class="sep">&</span>videoHeight=<span class="opt">432</span><span class="sep">&</span>videoDuration=<span class="opt">114</span>
+			</code>
+
+			<p>No call to the plugin is required in this case, unless you have other videos on the page that need it.</p>
+
+			<h4>URL Query String with a link on page</h4>
+
+			<p>If there <em>is a video link in the page DOM</em> to the autoplaying video, the query string videoURL <strong>must</strong> match the video URL in the &lt;a&gt; tag. Width, height, and duration are not needed in the query string, as they will now pull from any provided anchor REL parameters or plugin options. After autoplaying, the link will remain available to the page and plugin to be re-played if desired.</p>
+
+			<code>
+				http://<span class="opt">[path]</span><span class="sep">?</span>videoURL=<span class="opt">video/video_file.mp4</span>
+			</code>
+
+			<p>A plugin call should be made to handle the video link in the instance that the autoplay query string is not appended to the URL. The plugin functionality currently assumes that you will expect the same behavior as the autoplay (open in a LightBox). If other behavior is desired, you will need to update the plugin.</p>
+
+		</section>
+
+        <section id="toDo" class="toDo">
+            <h2>To Do</h2>
+
+            <h3>Bug Report</h3>
+            <p>Issues in need of debugging should be reported here if they are outstanding and could affect use of the plugin. It is especially important to report issues here in the docs if you might not have time to debug them quickly.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Reported</th>
+                        <th>Issue</th>
+                        <th>Resolved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                        <td class="resolved">Resolved</td>
+                        <td class="date">08.22.2012</td>                       
+                        <td>No progress tracking events available to non-HTML5</td>
+                        <td class="date">08.23.2012</td>
+                    </tr>
+                	<tr>
+                        <td class="active">Active</td>
+                        <td class="date">07.26.2012</td>                       
+                        <td>In IE9, the browser's native video controls are not flush with the bottom edge of the video</td>
+                        <td class="date"></td>
+                    </tr>
+                	<tr>
+                        <td class="resolved">Resolved</td>
+                        <td class="date">07.24.2012</td>                       
+                        <td>HTML5 videos don't play in the ColorBox on iPads</td>
+                        <td class="date">07.25.2012</td>
+                    </tr>
+                    <tr>
+                        <td class="resolved">Resolved</td>
+                        <td class="date">05.24.2012</td>                       
+                        <td>Video tracking doesn't work on Flash videos (when browser doesn't support HTML5+H.264)</td>
+                        <td class="date">06.26.2012</td>
+                    </tr>
+                    <tr>
+                        <td class="resolved">Resolved</td>
+                        <td class="date">05.22.2012</td>                       
+                        <td>Multiple videos displaying in same div hits createVideoObject function twice</td>
+                        <td class="date">05.23.2012</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Feature Requests</h3>
+            <ul>
+				<li><s>Auto-play functionality</s> <em>Added</em></li>
+				<li><s><strong>Make video controls styleable</strong></s> <em>Added</em></li>
+                <li>Full-screen support for Flash</li>
+                <li>Other video formats?</li>
+            </ul>
+
+		</section>
+
+        <section id="changelog" class="changelog">
+			<h2>Changelog</h2>
+			<p>If you make major changes to this plugin, please document them here, along with your name, so that others can consult you if necessary.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Author</th>
+                        <th>Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                        <td class="date">09.05.2012</td>
+                        <td>kmaida</td>
+                        <td>Added additional custom events to correspond with ColorBox callbacks (onOpen, onComplete, onCleanup, onClosed)</td>
+                    </tr>
+                	<tr>
+                        <td class="date">09.04.2012</td>
+                        <td>kmaida</td>
+                        <td>Added custom HTML5 video player controls option as well as a theme for controls that simulate the Flash player</td>
+                    </tr>
+                	<tr>
+                        <td class="date">08.23.2012</td>
+                        <td>kmaida</td>
+                        <td>Fixed video tracking custom events. Moved tracking functions into the plugin.</td>
+                    </tr>
+                	<tr>
+                        <td class="date">08.22.2012</td>
+                        <td>kmaida</td>
+                        <td>Made some minor improvements, fixed the Flash player extra height in Lightbox to only display when HTML5 is not supported</td>
+                    </tr>
+                	<tr>
+                        <td class="date">07.25.2012</td>
+                        <td>kmaida</td>
+                        <td>Split the video div placement into its own function, put the video creation into the success callbacks on the lightbox, videos now play on iPad.</td>
+                    </tr>
+					<tr>
+                        <td class="date">06.05.2012</td>
+                        <td>kmaida</td>
+                        <td>Removed some CSS properties from lightbox callback functions + removed ScrollFreeze (no longer needed since elimination of IE6 support)</td>
+                    </tr>
+                    <tr>
+                        <td class="date">05.25.2012</td>
+                        <td>kmaida</td>
+                        <td>Added autoplay and updated with new demos.</td>
+                    </tr>
+                    <tr>
+                        <td class="date">05.24.2012</td>
+                        <td>kmaida</td>
+                        <td>Finished adding custom events, revamped tracking. Now testing for production. Denoting first release as v.0.1 alpha.</td>
+                    </tr>
+                    <tr>
+                        <td class="date">05.17.2012</td>
+                        <td>kmaida</td>
+                        <td>Began plugin.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+			<h3>For Developers</h3>
+			<p>The plugin resides in TFS source control Enlightencollection/EnlVideoPlugin. When finished modifying, don't forget to package your changes in the /js folder. Update the documentation as appropriate (plus add changes to the Changelog and update filesizes on the download links).</p>
+
+        </section>
+		
+	</article>
+
+	<footer>
+		
+		<p><a href="#">Return to top</a> &uarr; | Please edit this documentation as appropriate!</p>
+
+	</footer>	
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+	<script>
+		$('footer a').on("click", function (e) {
+			$('html, body').animate({ scrollTop: 0 }, 'slow');
+			e.preventDefault();
+		});
+	</script>
+	
+</body>
+</html>
