@@ -484,24 +484,46 @@
                     // $(document).trigger(eventType, [video]);
                 };
 
+                // TODO: add option for frequency of tracking and refactor the following to eliminate the if/else chain
                 if (videoProgress < 90 && curPercent > 90) {
                     videoProgress = 90;
+                    sendVideoTrack(eventType + videoProgress);
+                }
+                else if (videoProgress < 87.5 && curPercent > 87.5) {
+                    videoProgress = 87.5;
                     sendVideoTrack(eventType + videoProgress);
                 }
                 else if (videoProgress < 75 && curPercent > 75) {
                     videoProgress = 75;
                     sendVideoTrack(eventType + videoProgress);
                 }
+                else if (videoProgress < 62.5 && curPercent > 62.5) {
+                    videoProgress = 62.5;
+                    sendVideoTrack(eventType + videoProgress);
+                }
                 else if (videoProgress < 50 && curPercent > 50) {
                     videoProgress = 50;
+                    sendVideoTrack(eventType + videoProgress);
+                }
+                else if (videoProgress < 37.5 && curPercent > 37.5) {
+                    videoProgress = 37.5;
                     sendVideoTrack(eventType + videoProgress);
                 }
                 else if (videoProgress < 25 && curPercent > 25) {
                     videoProgress = 25;
                     sendVideoTrack(eventType + videoProgress);
                 }
-                else if (curPercent <= 25) {
-                    videoProgress = 0;
+                else if (videoProgress < 12.5 && curPercent > 12.5) {
+                    videoProgress = 12.5;
+                    sendVideoTrack(eventType + videoProgress);
+                }
+                else if (videoProgress < 2 && curPercent > 1) {
+                    videoProgress = 2;
+                    sendVideoTrack("VideoStart");
+                }
+                else if (videoProgress < 1 && curPercent <= 25) {
+                    videoProgress = 1;
+                    sendVideoTrack("VideoLoad");
                 }
 
                 if (this.duration - this.currentTime <= 0.25) {

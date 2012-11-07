@@ -404,7 +404,7 @@
 	        	});
         	</code>
 
-        	<h4>VideoEnded</h4>
+        	<h4>VideoLoad, VideoStart, VideoEnded</h4>
         	<code>
         		<span class="cmt">// Use the stored video link or video to determine which video is playing</span><br>
 	        	$(document).on('<span class="opt">VideoEnded</span>', function(e, thisVideo<sup>&dagger;</sup>) {
@@ -415,7 +415,7 @@
 	        	});
 			</code>
 
-			<h4>VideoProgress_<em><span>0</span> or <span>25</span> or <span>50</span> or <span>75</span> or <span>90</span></em></h4>
+			<h4>VideoProgress_<em><span>0</span>, <span>12.5</span>, <span>25</span>, <span>37.5</span>, <span>50</span>, <span>62.5</span>, <span>75</span>, <span>87.5</span> or <span>90</span></em></h4>
 			<code>
 				$(document).on("VideoProgress_<span class="opt">25</span>", function(e, thisVideo<sup>&dagger;</sup>) {
 					<span class="codeIndent1 cmt">// code for ALL video(s) goes here</span>
